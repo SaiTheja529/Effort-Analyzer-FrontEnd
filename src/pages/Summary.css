@@ -1,0 +1,64 @@
+.summary-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.summary-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.context-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pill {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+.readme pre {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.75rem;
+  border-radius: 12px;
+  max-height: 260px;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+.explanation .prose {
+  line-height: 1.7;
+  white-space: normal;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.prose h3 {
+  margin: 0.2rem 0;
+  font-size: 1.05rem;
+  color: var(--accent);
+}
+
+.prose ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.prose li {
+  color: var(--text);
+}

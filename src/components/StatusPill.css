@@ -1,0 +1,27 @@
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  text-transform: capitalize;
+  letter-spacing: 0.01em;
+  color: var(--text);
+}
+
+.pill-queued {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.pill-running {
+  background: linear-gradient(120deg, #a78bfa, #60a5fa);
+}
+
+.pill-success {
+  background: linear-gradient(120deg, #34d399, #22c55e);
+}
+
+.pill-danger {
+  background: linear-gradient(120deg, #f97316, #ef4444);
+}

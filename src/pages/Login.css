@@ -1,0 +1,29 @@
+.login {
+  max-width: 640px;
+}
+
+.profile {
+  display: inline-flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.profile img {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  object-fit: cover;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.error {
+  color: var(--danger);
+  background: rgba(255, 107, 107, 0.08);
+  border: 1px solid rgba(255, 107, 107, 0.2);
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin-top: 12px;
+}
