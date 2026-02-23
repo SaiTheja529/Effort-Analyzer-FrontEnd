@@ -34,6 +34,14 @@
   gap: 0.4rem;
 }
 
+.score-meta {
+  margin-top: 6px;
+  display: grid;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
 .prose-lite h4 {
   margin: 0;
   font-size: 1rem;

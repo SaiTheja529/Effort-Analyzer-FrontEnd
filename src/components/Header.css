@@ -107,8 +107,22 @@
   object-fit: cover;
 }
 
+.user-avatar-fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(103, 232, 249, 0.45), rgba(59, 200, 255, 0.25));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-weight: 700;
+}
+
 .user-name {
+  display: block;
   font-weight: 600;
+}
+
+.user-secondary {
+  color: var(--muted);
 }
 
 @media (max-width: 900px) {

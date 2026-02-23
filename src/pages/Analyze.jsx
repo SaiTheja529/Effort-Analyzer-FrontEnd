@@ -5,7 +5,7 @@ import Card from "../components/Card";
 import Input from "../components/Input";
 import Loader from "../components/Loader";
 import { startAnalysis } from "../api/analyze";
-import { fetchHistory } from "../api/jobs";
+import { deleteHistoryEntry, fetchHistory } from "../api/jobs";
 import "./Analyze.css";
 
 const Analyze = () => {
@@ -16,6 +16,7 @@ const Analyze = () => {
   const [error, setError] = useState("");
   const [history, setHistory] = useState([]);
   const [historyLoading, setHistoryLoading] = useState(true);
+  const [deletingHistoryId, setDeletingHistoryId] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -63,6 +64,21 @@ const Analyze = () => {
     loadHistory();
   }, []);
 
+  const handleDeleteHistory = async (entry) => {
+    const ok = window.confirm(`Delete history for ${entry.repo}?`);
+    if (!ok) return;
+
+    setDeletingHistoryId(entry.id);
+    try {
+      await deleteHistoryEntry(entry.id);
+      setHistory((prev) => prev.filter((row) => row.id !== entry.id));
+    } catch {
+      // silent
+    } finally {
+      setDeletingHistoryId(null);
+    }
+  };
+
   return (
     <div className="analyze">
       <Card title="Analyze a repository" subtitle="Run a background job to score commit effort.">
@@ -106,12 +122,21 @@ const Analyze = () => {
                     {new Date(h.at).toLocaleString()} · {h.commits} commits
                   </p>
                 </div>
-                <Button
-                  variant="ghost"
-                  onClick={() => navigate(`/jobs/${h.id}?repo=${encodeURIComponent(h.repo)}`)}
-                >
-                  View
-                </Button>
+                <div className="history-row-actions">
+                  <Button
+                    variant="ghost"
+                    onClick={() => navigate(`/jobs/${h.id}?repo=${encodeURIComponent(h.repo)}`)}
+                  >
+                    View
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    onClick={() => handleDeleteHistory(h)}
+                    disabled={deletingHistoryId === h.id}
+                  >
+                    {deletingHistoryId === h.id ? "Deleting..." : "Delete"}
+                  </Button>
+                </div>
               </div>
             ))}
           </div>

@@ -1,5 +1,7 @@
 .login {
+  width: 100%;
   max-width: 640px;
+  margin: 0 auto;
 }
 
 .profile {
@@ -15,8 +17,62 @@
   object-fit: cover;
 }
 
+.profile-fallback {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: var(--text);
+  background: linear-gradient(135deg, rgba(103, 232, 249, 0.45), rgba(59, 200, 255, 0.25));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
 .muted {
   color: var(--muted);
+}
+
+.auth-toggle {
+  display: inline-flex;
+  gap: 8px;
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  width: fit-content;
+}
+
+.auth-toggle-btn {
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--muted);
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.auth-toggle-btn.active {
+  background: rgba(103, 232, 249, 0.18);
+  color: var(--text);
+}
+
+.local-auth-form {
+  display: grid;
+  gap: 12px;
+}
+
+.login-divider {
+  display: grid;
+  align-items: center;
+  text-align: center;
+  margin: 4px 0;
+}
+
+.login-divider span {
+  color: var(--muted);
+  font-size: 13px;
 }
 
 .error {

@@ -8,6 +8,7 @@ const navItems = [
   { to: "/analyze", label: "Analyze" },
   { to: "/summary", label: "Summary" },
   { to: "/leaders", label: "Leaders" },
+  { to: "/trends", label: "Trends" },
   { to: "/history", label: "History" },
 ];
 
@@ -15,6 +16,14 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { token, user, logout } = useAuth();
+  const displayName = user?.name || user?.login || user?.email || "User";
+  const secondaryText =
+    user?.provider === "local"
+      ? user.email
+      : user?.login
+        ? `@${user.login}`
+        : user?.email || "";
+  const avatarInitial = displayName.charAt(0).toUpperCase();
 
   const handleLogout = () => {
     logout();
@@ -75,11 +84,14 @@ const Header = () => {
         {user ? (
           <div className="user-chip">
             {user.avatar_url && (
-              <img src={user.avatar_url} alt={user.login} className="user-avatar" />
+              <img src={user.avatar_url} alt={displayName} className="user-avatar" />
+            )}
+            {!user.avatar_url && (
+              <span className="user-avatar user-avatar-fallback">{avatarInitial}</span>
             )}
             <div>
-              <span className="user-name">{user.name || user.login}</span>
-              <small>@{user.login}</small>
+              <span className="user-name">{displayName}</span>
+              {secondaryText && <small className="user-secondary">{secondaryText}</small>}
             </div>
             <Button variant="ghost" onClick={handleLogout}>
               Logout

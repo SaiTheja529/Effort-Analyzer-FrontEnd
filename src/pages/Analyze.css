@@ -30,6 +30,11 @@
   background: rgba(255, 255, 255, 0.04);
 }
 
+.history-row-actions {
+  display: flex;
+  gap: 8px;
+}
+
 .muted {
   color: var(--muted);
 }

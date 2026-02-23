@@ -1,0 +1,141 @@
+.rush {
+  display: grid;
+  gap: 14px;
+}
+
+.rush-stats {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.rush-stats div {
+  padding: 10px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.rush-stats p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.rush-stats strong {
+  display: block;
+  margin-top: 2px;
+  font-size: 16px;
+}
+
+.rush-board {
+  position: relative;
+  height: 320px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(14, 26, 45, 0.95), rgba(20, 36, 58, 0.95));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.rush-lanes {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.rush-lane {
+  border-right: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.rush-lane:last-child {
+  border-right: none;
+}
+
+.rush-item {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+}
+
+.rush-item-commit {
+  background: linear-gradient(130deg, rgba(34, 197, 94, 0.94), rgba(16, 185, 129, 0.92));
+  color: #052312;
+}
+
+.rush-item-bug {
+  background: linear-gradient(130deg, rgba(248, 113, 113, 0.95), rgba(239, 68, 68, 0.92));
+  color: #2b0606;
+}
+
+.rush-player {
+  position: absolute;
+  bottom: 12px;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  background: linear-gradient(130deg, rgba(103, 232, 249, 0.92), rgba(59, 200, 255, 0.95));
+  color: #042238;
+  box-shadow: 0 14px 30px rgba(59, 200, 255, 0.35);
+}
+
+.rush-hud p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.rush-actions {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.rush-mobile-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.rush-control-btn {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.rush-control-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+  .rush-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .rush-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rush-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

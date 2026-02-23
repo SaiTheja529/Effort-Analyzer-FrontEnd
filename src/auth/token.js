@@ -1,15 +1,21 @@
-const TOKEN_KEY = "ea_gh_token";
+const TOKEN_KEY = "ea_auth_token";
+const LEGACY_TOKEN_KEY = "ea_gh_token";
 const USER_KEY = "ea_user";
 
-export const getToken = () => localStorage.getItem(TOKEN_KEY) || "";
+export const getToken = () =>
+  localStorage.getItem(TOKEN_KEY) || localStorage.getItem(LEGACY_TOKEN_KEY) || "";
 
 export const setToken = (token) => {
-  if (token) localStorage.setItem(TOKEN_KEY, token);
+  if (!token) return;
+  localStorage.setItem(TOKEN_KEY, token);
+  localStorage.removeItem(LEGACY_TOKEN_KEY);
 };
 
 export const clearToken = () => {
   localStorage.removeItem(TOKEN_KEY);
+  localStorage.removeItem(LEGACY_TOKEN_KEY);
   localStorage.removeItem(USER_KEY);
+  localStorage.removeItem("ea_last_job");
 };
 
 export const storeUser = (user) => {

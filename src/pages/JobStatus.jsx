@@ -4,6 +4,7 @@ import Card from "../components/Card";
 import Loader from "../components/Loader";
 import StatusPill from "../components/StatusPill";
 import Button from "../components/Button";
+import InfoTooltip from "../components/InfoTooltip";
 import { fetchJobStatus, fetchCommits, fetchRankings } from "../api/jobs";
 import "./JobStatus.css";
 
@@ -201,6 +202,25 @@ const JobStatus = () => {
         <Card
           title="Commit summaries"
           subtitle="AI-generated context with effort scores."
+          actions={
+            <InfoTooltip title="Scoring Explainer">
+              <p>
+                <strong>Effort score</strong>: final score (0-100) for how substantial the change is.
+              </p>
+              <p>
+                <strong>Scoring source</strong>: <code>effort_v2_hybrid_llm</code> means LLM + rule-based math.
+              </p>
+              <p>
+                <strong>Deterministic fallback</strong>: if AI is unavailable, rule-based scoring is used.
+              </p>
+              <p>
+                <strong>Confidence</strong>: how reliable the score looks based on available change evidence.
+              </p>
+              <p>
+                <strong>Reason</strong>: short explanation of why this score was assigned.
+              </p>
+            </InfoTooltip>
+          }
         >
           <div className="commit-list">
             {commits.map((c) => (
@@ -215,6 +235,17 @@ const JobStatus = () => {
                 <div className="commit-summary prose-lite">
                   {c.ai_summary ? renderFormatted(c.ai_summary) : "No AI summary"}
                 </div>
+                {(c.score_source || c.score_confidence || c.score_reason) && (
+                  <div className="score-meta">
+                    <span>
+                      Scoring: {c.score_source || "unknown"}
+                      {typeof c.score_confidence === "number"
+                        ? ` (${Math.round(c.score_confidence * 100)}% confidence)`
+                        : ""}
+                    </span>
+                    {c.score_reason && <span>{c.score_reason}</span>}
+                  </div>
+                )}
                 <div className="commit-meta">
                   <span>Added: {c.lines_added}</span>
                   <span>Deleted: {c.lines_deleted}</span>

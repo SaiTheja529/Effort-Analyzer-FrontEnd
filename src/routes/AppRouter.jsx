@@ -8,6 +8,7 @@ import NotFound from "../pages/NotFound";
 import History from "../pages/History";
 import Summary from "../pages/Summary";
 import Leaders from "../pages/Leaders";
+import Trends from "../pages/Trends";
 import { useAuth } from "../auth/AuthContext";
 
 const Protected = ({ children }) => {
@@ -61,6 +62,14 @@ const AppRouter = () => {
           element={
             <Protected>
               <Leaders />
+            </Protected>
+          }
+        />
+        <Route
+          path="/trends"
+          element={
+            <Protected>
+              <Trends />
             </Protected>
           }
         />
